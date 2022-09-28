@@ -1,6 +1,6 @@
-============================================
+================================================
 MOD-COMP
-============================================
+================================================
 Modular computational tools for high speed compressible flows
 
 A user guide and brief overview for a Python implementation of the method presented in 
