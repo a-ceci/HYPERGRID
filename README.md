@@ -1,10 +1,18 @@
+==================================================
+MOD-COMP
+==================================================
+Modular computational tools for high speed compressible flows
+
 A user guide and brief overview for a Python implementation of the method presented in 
 Modular Method for Estimation of Velocity and Temperature Profiles in 
 High-Speed Boundary Layers [INSERT PAGE AND VOLUME DETAILS]
 DOI: https://doi.org/10.2514/1.J061735
 
-Questions on the method can be sent to the authors: 
+Questions on the velocity profile calculation method can be sent to the authors: 
 Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
+
+Questions on the wall-normal grid stretching method can be sent to the authors:
+Alessandro Ceci (alessandro.ceci@uniroma1.it) and Sergio Pirozzoli (sergio.pirozzoli@uniroma1.it)
 
 ==================================================
 HOW TO USE
