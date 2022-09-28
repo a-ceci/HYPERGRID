@@ -1,6 +1,6 @@
-==================================================
+============================================
 MOD-COMP
-==================================================
+============================================
 Modular computational tools for high speed compressible flows
 
 A user guide and brief overview for a Python implementation of the method presented in 
@@ -14,9 +14,9 @@ Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
 Questions on the wall-normal grid stretching method can be sent to the authors:
 Alessandro Ceci (alessandro.ceci@uniroma1.it) and Sergio Pirozzoli (sergio.pirozzoli@uniroma1.it)
 
-==================================================
+============================================
 HOW TO USE
-==================================================
+============================================
 Beginner users are recommended to look at the Python script methodDemo1.py 
 The script demonstrates an example of computing the skin friction coefficient, wall heat transfer
 along with velocity and temperature profiles for a compressible boundary layer at Mach number = 5,
@@ -28,9 +28,9 @@ Next, an example for the same boundary layer case as above however with the spec
 modeling choices is presented in the Python script methodDemo2.py. 
 More information on the available modeling choices and how to change them is available below.
 
-==================================================
+============================================
 FUNCTION DEFINITION
-==================================================
+============================================
 
 Function: boundaryLayerProperties in the Python script boundaryLayerPropFunctions.py
 
@@ -113,9 +113,9 @@ Returns:
 
 
 
-==================================================
+============================================
 METHOD DESCRIPTION
-==================================================
+============================================
 
 A detailed description of the method can be found in the paper referenced above. 
 
@@ -135,9 +135,9 @@ temperature-velocity modeling relation.
 The method follows an iterative process which, on convergence, returns the outputs described above.
 
 
-==================================================
+============================================
 MODELING CHOICES
-==================================================
+============================================
 
 The current work models the incompressible velocity profile using the definition presented in 
 Huang et al. [AIAA Journal, Vol. 31, No. 9, 1993, pp. 1600– 1604].
@@ -185,9 +185,9 @@ flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform
 flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]
 
 
-==================================================
+============================================
 POINTS TO NOTE
-==================================================
+============================================
 
 1. For grid-converged results, it is recommended to use grids with 
 near-wall resolution < 0.2 plus units. The distribution of grid points can be 
@@ -214,9 +214,9 @@ ensure stability of the solution process. These default values can be over-writt
 the underRelaxFactor as an input parameter to the function boundaryLayerProperties.
 
 
-=================================================
+============================================
 ADDITIONAL DOCUMENTATION
-==================================================
+============================================
 A detailed description of each function implemented in boundaryLayerPropFunctions.py can be found in 
 the file boundaryLayerPropFunctions.html. Please note that the function description in the html file 
 is the same as the one found in the python script boundaryLayerPropFunctions.py.
