@@ -144,7 +144,7 @@ temperature-velocity modeling relation.
 The method follows an iterative process which, on convergence, returns the outputs described above.
 
 For the generation of the natural wall-normal grid stretching, first a universal scaling for the
-Kolmodorov length-scale in semilocal units is assumed, i.e. eta^*=( k y^* )^1/4; then the y^* profile
+Kolmodorov length-scale in semilocal units is assumed, i.e. eta^* = ( k y^* )^1/4; then the y^* profile
 is created. Finally the generated semilocal wall-normal grid ( y^* ) is converted into the wall scaled 
 one ( y^+ ).
 
