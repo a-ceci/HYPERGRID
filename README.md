@@ -236,7 +236,5 @@ The script will output the message:\
 ===================================================
 ADDITIONAL DOCUMENTATION
 ===================================================
-A detailed description of each function implemented in boundaryLayerPropFunctions.py can be found 
-in the file boundaryLayerPropFunctions.html. 
-Please note that the function description in the html file is the same as the one found in the 
-python script boundaryLayerPropFunctions.py
+A detailed description of each function implemented in  can be found in the file 
+boundaryLayerPropFunctions.py
