@@ -3,10 +3,10 @@ MOD-COMP
 ===================================================
 Modular computational tools for high speed compressible flows
 
-A user guide and brief overview for a Python implementation of the method presented in 
+User guide and brief overview for a Python implementation of the method presented in 
 Modular Method for Estimation of Velocity and Temperature Profiles in 
-High-Speed Boundary Layers [INSERT PAGE AND VOLUME DETAILS]
-DOI: https://doi.org/10.2514/1.J061735
+High-Speed Boundary Layers [AIAA JOURNAL, Vol. 60, No. 9, September 2022
+DOI: https://doi.org/10.2514/1.J061735], and ...
 
 Questions on the velocity profile calculation method can be sent to the authors: 
 Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
@@ -27,6 +27,11 @@ return the most accurate predictions at the time of the publication of the above
 Next, an example for the same boundary layer case as above however with the specification of 
 modeling choices is presented in the Python script methodDemo2.py. 
 More information on the available modeling choices and how to change them is available below.
+
+Regarding the wall-normal grid generation, the user is only required to set the parameters
+alf_plus (controlling the resolution requirements in terms of Kolmogorov scale in wall units),
+jb (defineing the grid index at which transition between the near-wall and the outer mesh stretching)
+and ysw (setting the first grid point in the wall-normal direction in semi-local-units).
 
 ===================================================
 FUNCTION DEFINITION
@@ -108,6 +113,8 @@ Returns:
 		Tplus: array
 		Array of T-plus values (Tplus = T/Tw) values in the boundary layer
 
+		mu_muw: array
+		Arrray of wall-scaled viscosity values in the boundary layer
 		
 		[Refer to the manuscript for the definition of the output parameters above]
 
@@ -117,7 +124,7 @@ Returns:
 METHOD DESCRIPTION
 ===================================================
 
-A detailed description of the method can be found in the paper referenced above. 
+A detailed description of the method can be found in the papers referenced above. 
 
 In brief, the properties for the compressible boundary layer are computed by relating it
 with an equivalent incompressible state.
@@ -133,6 +140,11 @@ boundary layer temperature which in turn is related to the boundary layer veloci
 temperature-velocity modeling relation. 
 
 The method follows an iterative process which, on convergence, returns the outputs described above.
+
+For the generation of the natural wall-normal grid stretching, first a universal scaling for the
+Kolmodorov length-scale in semilocal units is assumed, i.e. eta^*=( k y^* )^1/4; then the y^* profile
+is created. Finally the generated semilocal wall-normal grid ( y^* ) is converted into the wall scaled 
+one ( y^+ ).
 
 
 ===================================================
@@ -185,6 +197,14 @@ flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform
 flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]
 
 
+
+
+5. Wall normal grid stretching
+The semilocal y^* profile is created according to the proposed stretching of Pirozzoli & Orlandi 
+[J. Comput. Phys.Volume 439,2021, 110408, https://doi.org/10.1016/j.jcp.2021.110408 ], the final
+y^+ grid is then obtained using the tranformation from semilocal to wall-scaled units.
+
+
 ===================================================
 POINTS TO NOTE
 ===================================================
@@ -214,9 +234,19 @@ ensure stability of the solution process. These default values can be over-writt
 the underRelaxFactor as an input parameter to the function boundaryLayerProperties.
 
 
+
+3. If the resolution requirement in terms of Kolomogorov length-scale are not very restrictive,
+the number of computed points in the wall normal direction might be lower than the parameter jb.
+The script will output the message:
+"WARNING: Predicted Ny points in natural stretching are less than jb"
+"Bounding min(Ny) to jb"
+"PLEASE VERIFY YOUR RESOLUTION TRESHOLD"
+
+
 ===================================================
 ADDITIONAL DOCUMENTATION
 ===================================================
-A detailed description of each routine implemented can be found in 
-the script file boundaryLayerPropFunctions.py
-
+A detailed description of each function implemented in boundaryLayerPropFunctions.py can be found 
+in the file boundaryLayerPropFunctions.html. 
+Please note that the function description in the html file is the same as the one found in the 
+python script boundaryLayerPropFunctions.py
