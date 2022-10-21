@@ -168,38 +168,31 @@ flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3\
 
 
 
-2. Incompressible skin-friction relation - Chosen by specifying value to flagIncCf
-
-[For implementation details, see function skinFrictionIncompressible in boundaryLayerPropFunctions.py]
-
-flagIncCf = 1 : Karman-Schoenherr's relation
-flagIncCf = 2 : Blasius relation
-flagIncCf = 3 : Smits' relation [DEFAULT]
+2. Incompressible skin-friction relation - Chosen by specifying value to flagIncCf\
+[For implementation details, see function skinFrictionIncompressible in boundaryLayerPropFunctions.py]\
+flagIncCf = 1 : Karman-Schoenherr's relation\
+flagIncCf = 2 : Blasius relation\
+flagIncCf = 3 : Smits' relation [DEFAULT]\
 
 
 
-3. Temperature-Velocity relation - Chosen by specifying value to flagTempVelocity
-
-[For implementation details, see function temperatureFromVelocity in boundaryLayerPropFunctions.py]
-
-flagTempVelocity = 1 : Zhang's relation [DEFAULT]
-flagTempVelocity = 2 : Walz's relation
+3. Temperature-Velocity relation - Chosen by specifying value to flagTempVelocity\
+[For implementation details, see function temperatureFromVelocity in boundaryLayerPropFunctions.py]\
+flagTempVelocity = 1 : Zhang's relation [DEFAULT]\
+flagTempVelocity = 2 : Walz's relation\
 
 
 
-4. Velocity transform function - Chosen by specifying value to flagVelocityTransform
-
-[For implementation details, see function inverseVelocityTransform in boundaryLayerPropFunctions.py]
-
-flagVelocityTransform = 1 : Inverse of the Van Driest velocity transform
-flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform
-flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]
+4. Velocity transform function - Chosen by specifying value to flagVelocityTransform\
+[For implementation details, see function inverseVelocityTransform in boundaryLayerPropFunctions.py]\
+flagVelocityTransform = 1 : Inverse of the Van Driest velocity transform\
+flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform\
+flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]\
 
 
 
 
-5. Wall normal grid stretching
-
+5. Wall normal grid stretching\
 The semilocal y^* profile is created according to the proposed stretching of Pirozzoli & Orlandi 
 [J. Comput. Phys.Volume 439,2021, 110408, https://doi.org/10.1016/j.jcp.2021.110408 ], the final
 y^+ grid is then obtained using the tranformation from semilocal to wall-scaled units.
@@ -215,10 +208,10 @@ controlled using the number of grid points "N" and, the grid-stretching paramete
 "gridStretchPar". By default, gridStretchPar = 1.016 and can be changed by specifying 
 it as an input parameter to the function boundaryLayerProperties.
 The following warning messages are displayed if the 
-grid is coarser than the above threshold: 
-"WARNING: Grid spacing at the wall = ___ is GREATER than threshold value = 0.2 (in plus units)"
-"RUN AGAIN WITH A FINER GRID AT THE WALL"
-The threshold for grid convergence check is hardcoded and can be altered by modifying the variable 
+grid is coarser than the above threshold:\
+"WARNING: Grid spacing at the wall = ___ is GREATER than threshold value = 0.2 (in plus units)"\
+"RUN AGAIN WITH A FINER GRID AT THE WALL"\
+The threshold for grid convergence check is hardcoded and can be altered by modifying the variable
 wallResolutionThreshold in the function boundaryLayerProperties.
 
 
@@ -234,9 +227,9 @@ the underRelaxFactor as an input parameter to the function boundaryLayerProperti
 
 3. If the resolution requirement in terms of Kolomogorov length-scale are not very restrictive,
 the number of computed points in the wall normal direction might be lower than the parameter jb.
-The script will output the message:
-"WARNING: Predicted Ny points in natural stretching are less than jb"
-"Bounding min(Ny) to jb"
+The script will output the message:\
+"WARNING: Predicted Ny points in natural stretching are less than jb"\
+"Bounding min(Ny) to jb"\
 "PLEASE VERIFY YOUR RESOLUTION TRESHOLD"
 
 
