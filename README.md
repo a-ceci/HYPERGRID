@@ -158,13 +158,13 @@ Huang et al. [AIAA Journal, Vol. 31, No. 9, 1993, pp. 1600– 1604].
 It can be changed by editing the function universalVelocityProfile in boundaryLayerPropFunctions.py
 
 
-Further, the following modeling choices are incorporated in the current implementation:
-1. Viscosity-Temperature relation - Chosen by specifying value to flagViscTemp
-[For implementation details, see function viscosityFromTemperature in boundaryLayerPropFunctions.py]
-flagViscTemp = 1 : Keyes' viscosity law
-flagViscTemp = 2 : Sutherland's law
-flagViscTemp = 3 : Curve-fit to the CoolProp dataset [DEFAULT]
-flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3
+Further, the following modeling choices are incorporated in the current implementation:\
+1. Viscosity-Temperature relation - Chosen by specifying value to flagViscTemp\
+[For implementation details, see function viscosityFromTemperature in boundaryLayerPropFunctions.py]\
+flagViscTemp = 1 : Keyes' viscosity law\
+flagViscTemp = 2 : Sutherland's law\
+flagViscTemp = 3 : Curve-fit to the CoolProp dataset [DEFAULT]\
+flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3\
 
 
 
