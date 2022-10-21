@@ -45,6 +45,7 @@ Computes boundary layer properties for the prescribed flow parameters.
 Subscripts _w (or w) and _e (or e) denote wall and edge (freestream) properties, respectively.
 
 Parameters:
+
 		M: float 
 		Mach number (M = Ue/c_e, where c is the speed of sound)
 		
@@ -95,6 +96,7 @@ Parameters:
 
 
 Returns:
+
 		cf: float 
 		Skin friction coefficient
 		
