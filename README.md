@@ -217,7 +217,6 @@ near-wall resolution < 0.2 plus units. The distribution of grid points can be
 controlled using the number of grid points "N" and, the grid-stretching parameter 
 "gridStretchPar". By default, gridStretchPar = 1.016 and can be changed by specifying 
 it as an input parameter to the function boundaryLayerProperties.
-
 The following warning messages are displayed if the 
 grid is coarser than the above threshold: 
 "WARNING: Grid spacing at the wall = ___ is GREATER than threshold value = 0.2 (in plus units)"
