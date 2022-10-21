@@ -164,7 +164,7 @@ Further, the following modeling choices are incorporated in the current implemen
 flagViscTemp = 1 : Keyes' viscosity law\
 flagViscTemp = 2 : Sutherland's law\
 flagViscTemp = 3 : Curve-fit to the CoolProp dataset [DEFAULT]\
-flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3\
+flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3
 
 
 
@@ -172,14 +172,14 @@ flagViscTemp = 4 : Power law, (mu/muw) = (T/Tw)^n, where n = 2/3\
 [For implementation details, see function skinFrictionIncompressible in boundaryLayerPropFunctions.py]\
 flagIncCf = 1 : Karman-Schoenherr's relation\
 flagIncCf = 2 : Blasius relation\
-flagIncCf = 3 : Smits' relation [DEFAULT]\
+flagIncCf = 3 : Smits' relation [DEFAULT]
 
 
 
 3. Temperature-Velocity relation - Chosen by specifying value to flagTempVelocity\
 [For implementation details, see function temperatureFromVelocity in boundaryLayerPropFunctions.py]\
 flagTempVelocity = 1 : Zhang's relation [DEFAULT]\
-flagTempVelocity = 2 : Walz's relation\
+flagTempVelocity = 2 : Walz's relation
 
 
 
@@ -187,7 +187,7 @@ flagTempVelocity = 2 : Walz's relation\
 [For implementation details, see function inverseVelocityTransform in boundaryLayerPropFunctions.py]\
 flagVelocityTransform = 1 : Inverse of the Van Driest velocity transform\
 flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform\
-flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]\
+flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function [DEFAULT]
 
 
 
