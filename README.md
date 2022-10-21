@@ -220,11 +220,8 @@ it as an input parameter to the function boundaryLayerProperties.
 
 The following warning messages are displayed if the 
 grid is coarser than the above threshold: 
-
 "WARNING: Grid spacing at the wall = ___ is GREATER than threshold value = 0.2 (in plus units)"
-
 "RUN AGAIN WITH A FINER GRID AT THE WALL"
-
 The threshold for grid convergence check is hardcoded and can be altered by modifying the variable 
 wallResolutionThreshold in the function boundaryLayerProperties.
 
@@ -243,9 +240,7 @@ the underRelaxFactor as an input parameter to the function boundaryLayerProperti
 the number of computed points in the wall normal direction might be lower than the parameter jb.
 The script will output the message:
 "WARNING: Predicted Ny points in natural stretching are less than jb"
-
 "Bounding min(Ny) to jb"
-
 "PLEASE VERIFY YOUR RESOLUTION TRESHOLD"
 
 
