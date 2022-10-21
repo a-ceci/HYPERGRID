@@ -159,11 +159,8 @@ It can be changed by editing the function universalVelocityProfile in boundaryLa
 
 
 Further, the following modeling choices are incorporated in the current implementation:
-
 1. Viscosity-Temperature relation - Chosen by specifying value to flagViscTemp
-
 [For implementation details, see function viscosityFromTemperature in boundaryLayerPropFunctions.py]
-
 flagViscTemp = 1 : Keyes' viscosity law
 flagViscTemp = 2 : Sutherland's law
 flagViscTemp = 3 : Curve-fit to the CoolProp dataset [DEFAULT]
