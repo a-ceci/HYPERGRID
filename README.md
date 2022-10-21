@@ -202,6 +202,7 @@ flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function 
 
 
 5. Wall normal grid stretching
+
 The semilocal y^* profile is created according to the proposed stretching of Pirozzoli & Orlandi 
 [J. Comput. Phys.Volume 439,2021, 110408, https://doi.org/10.1016/j.jcp.2021.110408 ], the final
 y^+ grid is then obtained using the tranformation from semilocal to wall-scaled units.
