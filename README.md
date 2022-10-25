@@ -126,6 +126,56 @@ Returns:
 		[Refer to the manuscript for the definition of the output parameters above]
 
 
+---------------------------------------------------
+Function: gridProperties in the Python script boundaryLayerPropFunctions.py
+
+gridProperties(yPlus,T_Tw,mu_muw,alf_plus,jb,ysw)
+
+Computes natural wall-normal grid distribution given the prescribed resolution requirements
+Subscripts _w (or w) denote wall properties, respectively.
+
+Parameters:
+
+		yPlus, array
+		Wall-normal points for the compressible boundary layer (in plus units)
+		
+                T_Tw, array
+		Boundary layer temperature profile, normalized by the wall temperature Tw
+		
+                mu_muw, array
+		Boundary layer viscosity profile, normalized by the wall viscosity muw
+		
+                alf_plus, float
+		Target resolution in wall Kolmogorov units
+		
+                jb, integer
+		Transition node from viscous to outer stretching
+		
+                ysw, float
+		Target wall distance from the wall in semilocal units
+
+
+Returns:
+
+		yStar_j, array
+		semilocal scaled wall distance function of the number of points in the wall normal direction
+		
+                yPlus_j, array
+		wall scaled  wall distance function of the number of points in the wall normal direction
+		
+                jj, array 
+		index array of points in the wall normal direction
+		
+                NyCore, integer
+		number of points in the wall normal direction
+		
+                alf_opt, float
+		optimal alf star to respect threshold resolution in wall Kolmogorov units
+		
+                etaPlus_j, array
+		estimated etaPlus profile, useful to chek resolution requirements
+
+
 
 ===================================================
 METHOD DESCRIPTION
