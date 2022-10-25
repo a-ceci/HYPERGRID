@@ -6,7 +6,7 @@ Modular computational tools for high speed compressible flows
 User guide and brief overview for a Python implementation of the method presented in 
 Modular Method for Estimation of Velocity and Temperature Profiles in 
 High-Speed Boundary Layers [AIAA JOURNAL, Vol. 60, No. 9, September 2022
-DOI: https://doi.org/10.2514/1.J061735], and ...
+DOI: https://doi.org/10.2514/1.J061735], and [PLACE PAPER INFO HERE]
 
 Questions on the velocity profile calculation method can be sent to the authors: 
 Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
