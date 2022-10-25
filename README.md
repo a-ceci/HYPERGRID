@@ -139,19 +139,19 @@ Parameters:
 		yPlus, array
 		Wall-normal points for the compressible boundary layer (in plus units)
 		
-                T_Tw, array
+		T_Tw, array
 		Boundary layer temperature profile, normalized by the wall temperature Tw
 		
-                mu_muw, array
+		mu_muw, array
 		Boundary layer viscosity profile, normalized by the wall viscosity muw
 		
-                alf_plus, float
+		alf_plus, float
 		Target resolution in wall Kolmogorov units
 		
-                jb, integer
+		jb, integer
 		Transition node from viscous to outer stretching
 		
-                ysw, float
+		ysw, float
 		Target wall distance from the wall in semilocal units
 
 
@@ -160,19 +160,19 @@ Returns:
 		yStar_j, array
 		semilocal scaled wall distance function of the number of points in the wall normal direction
 		
-                yPlus_j, array
+		yPlus_j, array
 		wall scaled  wall distance function of the number of points in the wall normal direction
 		
-                jj, array 
+		jj, array 
 		index array of points in the wall normal direction
 		
-                NyCore, integer
+		NyCore, integer
 		number of points in the wall normal direction
 		
-                alf_opt, float
+		alf_opt, float
 		optimal alf star to respect threshold resolution in wall Kolmogorov units
 		
-                etaPlus_j, array
+		etaPlus_j, array
 		estimated etaPlus profile, useful to chek resolution requirements
 
 
