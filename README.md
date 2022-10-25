@@ -166,7 +166,7 @@ Returns:
 		jj, array 
 		index array of points in the wall normal direction
 		
-		NyCore, integer
+		Ny, integer
 		number of points in the wall normal direction
 		
 		alf_opt, float
