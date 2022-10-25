@@ -15,6 +15,11 @@ Questions on the wall-normal grid stretching method can be sent to the authors:
 Alessandro Ceci (alessandro.ceci@uniroma1.it) and Sergio Pirozzoli (sergio.pirozzoli@uniroma1.it)
 
 ===================================================
+PREREQUISITES
+===================================================
+Working install of python3 with: numpy, scipy, matplotlib
+
+===================================================
 HOW TO USE
 ===================================================
 Beginner users are recommended to look at the Python script methodDemo1.py 
