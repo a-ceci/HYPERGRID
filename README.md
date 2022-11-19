@@ -1,5 +1,5 @@
 ===================================================
-MOD-COMP
+HYPERGRID
 ===================================================
 Modular computational tools for high speed compressible flows
 
