@@ -36,7 +36,7 @@ More information on the available modeling choices and how to change them is ava
 Regarding the wall-normal grid generation, the user is only required to set the parameters
 alf_plus (controlling the resolution requirements in terms of Kolmogorov scale in wall units),
 jb (defineing the grid index at which transition between the near-wall and the outer mesh stretching)
-and ysw (setting the first grid point in the wall-normal direction in semi-local-units).
+and ysp (setting the first grid point in the wall-normal direction in inner-units).
 
 ===================================================
 FUNCTION DEFINITION
@@ -151,8 +151,15 @@ Parameters:
 		jb, integer
 		Transition node from viscous to outer stretching
 		
-		ysw, float
-		Target wall distance from the wall in semilocal units
+		ysp, float
+		Target first point wall distance in inner units
+		
+		**kwargs: Optional inputs:
+		
+				myNy, integer
+				Number of points to use to build the wall normal grid stretching.
+				By default the method with run with a number of points bases on
+				an asyptotic estimation for the given Reynolds number
 
 
 Returns:
