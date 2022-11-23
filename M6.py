@@ -1,14 +1,3 @@
-#The current script is an example on computing properties for
-#a compressible boundary layer using the method described in
-# Modular Method for Estimation of Velocity and Temperature Profiles in
-#High-Speed Boundary Layers [INSERT PAGE AND VOLUME DETAILS]
-#DOI: https://doi.org/10.2514/1.J061735
-
-#Here, we compute the boundary layer properties using user-selected
-#system parameters and modeling choices. 
-#For an example with default modeling choices, see methodDemo1.py
-#For more information, see README file
-
 import os
 import sys
 
