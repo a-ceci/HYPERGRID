@@ -38,7 +38,8 @@ alf_plus (controlling the resolution requirements in terms of Kolmogorov scale i
 jb (defineing the grid index at which transition between the near-wall and the outer mesh stretching)
 and ysp (setting the first grid point in the wall-normal direction in inner-units).
 
-M2.py and M6.py are example for boundary layer grid generations y^+(j) given the prescribed inputs.
+M2.py and M6.py are two examples for the boundary layer grid generation profile y^+(j), given the 
+prescribed inputs.
 
 ===================================================
 FUNCTION DEFINITION
