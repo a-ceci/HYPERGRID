@@ -7,7 +7,7 @@ User guide and brief overview for a Python implementation of the method presente
 Modular Method for Estimation of Velocity and Temperature Profiles in 
 High-Speed Boundary Layers [AIAA JOURNAL, Vol. 60, No. 9, September 2022
 DOI: https://doi.org/10.2514/1.J061735], and 
-[J. Comput. Phys.: X, Volume 17, 2023, 100128, DOI:https://doi.org/10.1016/j.jcpx.2023.100128]
+[J. Comput. Phys.: X, Volume 17, 2023, 100128, DOI: https://doi.org/10.1016/j.jcpx.2023.100128]
 
 Questions on the velocity profile calculation method can be sent to the authors: 
 Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
