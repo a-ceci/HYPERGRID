@@ -162,7 +162,7 @@ Parameters:
 		
 				myNy, integer
 				Number of points to use to build the wall normal grid stretching.
-				By default the method with run with a number of points bases on
+				By default the method with run with a number of points based on
 				an asyptotic estimation for the given Reynolds number
 
 
