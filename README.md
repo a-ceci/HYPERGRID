@@ -15,6 +15,12 @@ Vedant Kumar (vkumar20@umd.edu) and Johan Larsson (jola@umd.edu)
 Questions on the wall-normal grid stretching method can be sent to the authors:
 Alessandro Ceci (alessandro.ceci@uniroma1.it) and Sergio Pirozzoli (sergio.pirozzoli@uniroma1.it)
 
+Update 30th October 2024: compute properties for a compressible boundary layer using the method described in
+Hasan et al. (https://doi.org/10.2514/1.J063335), but with additional modular features as seen in compressibleBLprofiles
+detailed further in Kumar & Larsson (AIAA JOURNAL) and Ceci & Pirozzoli (J. Comput. Phys.: X).
+The computational tools can now compute directly the compressible boundary layer profiles 
+using boundaryLayerPropFunctions_direct.py in the source code.
+
 ===================================================
 PREREQUISITES
 ===================================================
@@ -23,7 +29,7 @@ Working install of python3 with: numpy, scipy, matplotlib
 ===================================================
 HOW TO USE
 ===================================================
-Beginner users are recommended to look at the Python script methodDemo1.py 
+Beginner users are recommended to look at the Python script methodDemo1.py.
 The script demonstrates an example of computing the skin friction coefficient, wall heat transfer
 along with velocity and temperature profiles for a compressible boundary layer at Mach number = 5,
 Reynolds number (ReDelta2) = 3000 with wall and freestream temperatures of 300 and 200 K, respectively.
@@ -36,14 +42,23 @@ More information on the available modeling choices and how to change them is ava
 
 Regarding the wall-normal grid generation, the user is only required to set the parameters
 alf_plus (controlling the resolution requirements in terms of Kolmogorov scale in wall units),
-jb (defineing the grid index at which transition between the near-wall and the outer mesh stretching)
+jb (defining the grid index at which transition between the near-wall and the outer mesh stretching)
 and ysp (setting the first grid point in the wall-normal direction in inner-units).
 
 M2.py and M6.py are two examples for the boundary layer grid generation profile y^+(j), given the 
 prescribed inputs.
 
+Update 30th October 2024: Beginner users are recommended to look at the Python script methodDemo_direct.py.
+The script demonstrates an example of computing the skin friction coefficient, wall heat transfer
+along with velocity and temperature profiles for a compressible boundary layer at Mach number = 5,
+Reynolds number (ReDelta2) = 3000 with wall and freestream temperatures of 300 and 200 K, respectively.
+The script now uses a direct approach computing directly the compressible boundary layer profiles.
+The grid generation process is unchanged, but two additional scripts M2_direct.py and M6_direct.py are now
+released. The scripts generate the boundary layer grid generation profile y^+(j) using boundary layer
+properties of the computed compressible profiles.
+
 ===================================================
-FUNCTION DEFINITION
+FUNCTION DEFINITION (indirect method)
 ===================================================
 
 Function: boundaryLayerProperties in the Python script boundaryLayerPropFunctions.py
@@ -99,7 +114,6 @@ Parameters:
 			Extent of under-relaxation for the solution process such that
 			x_new = (1 - underRelaxFactor)*x_old + underRelaxFactor*x_new
 
-
 		Note that unspecified optional inputs switch to default values. 
 		See below for more information.
 
@@ -126,7 +140,7 @@ Returns:
 
 		mu_muw: array
 		Arrray of wall-scaled viscosity values in the boundary layer
-		
+
 		[Refer to the manuscript for the definition of the output parameters above]
 
 
@@ -189,6 +203,165 @@ Returns:
 
 
 ===================================================
+FUNCTION DEFINITION (direct method)
+===================================================
+
+Function: boundaryLayerProperties in the Python script boundaryLayerPropFunctions_direct.py
+
+boundaryLayerProperties(M, ReDelta2, Tw_Te, Te, N, **kwargs)
+
+Computes boundary layer properties for the prescribed flow parameters.
+Subscripts _w (or w) and _e (or e) denote wall and edge (freestream) properties, respectively.
+
+Parameters:
+
+		M: float 
+		Mach number (M = Ue/c_e, where c is the speed of sound)
+		
+		ReDelta2: float 
+		Reynolds number (ReDelta2 = rho_e Ue theta / mu_w, where theta is the momentum thickness)
+		
+		Tw_Te: float 
+		Ratio of wall (Tw) to freestream (Te) temperature
+		
+		Te: float 
+		Freestream temperature	
+		
+		N: int 
+		Number of grid points in the boundary layer	
+
+		**kwargs: Optional inputs 
+
+			
+			Flags for different model choices
+			
+			flagViscTemp: int, optional 
+			Flag for selecting viscosity-temperature relation. 
+
+			flagIncCf: int, optional
+			Flag for selecting an incompressible skin-friction relation
+
+			flagTempVelocity: int, optional
+			Flag for selecting a temperature-velocity relation
+
+			flagVelocityTransform: int, optional
+			Flag for selecting a velocity transform function
+
+			
+			Additional parameters
+
+			gridStretchPar: float 
+			Grid-stretching parameter for geometrical stretching.
+			Hence, if gridStretchPar = 1, then we have a uniform grid and if
+			gridStretchPar>1, then we have a grid stretching away from the wall
+
+			underRelaxFactor: float 
+			Extent of under-relaxation for the solution process such that
+			x_new = (1 - underRelaxFactor)*x_old + underRelaxFactor*x_new	
+
+			calibrateWakePar: string ('Yes' or 'No', bool)
+			Compute the equivalent incompressible boundary layer velocity profile
+			in order to calibrate the wake parameter
+
+		Note that unspecified optional inputs switch to default values. 
+		See below for more information.
+
+
+Returns:
+
+		cf: float 
+		Skin friction coefficient
+		
+		Bq: float 
+		Wall heat transfer rate
+
+		ch: float 
+		Stanton number, undefined for adiabatic walls
+
+		yPlus: array
+		Array of y-plus coordinates inside the boundary layer
+
+		uPlus: array
+		Array of scaled velocity (uPlus = u/u_tau) values in the boundary layer
+
+		Tplus: array
+		Array of T-plus values (Tplus = T/Tw) values in the boundary layer
+
+		mu_muw: array
+		Arrray of wall-scaled viscosity values in the boundary layer
+		
+		kappa_VK: float
+		Value of the Von Karman constant used in the boundary layer profile generation,
+		that must be also given as input for the wall-normal grid generation process
+
+		[Refer to the manuscript for the definition of the output parameters above]
+
+
+---------------------------------------------------
+Function: gridProperties in the Python script boundaryLayerPropFunctions.py
+
+gridProperties(yPlus,T_Tw,mu_muw,alf_plus,jb,ysw)
+
+Computes natural wall-normal grid distribution given the prescribed resolution requirements
+Subscripts _w (or w) denote wall properties, respectively.
+
+Parameters:
+
+		yPlus, array
+		Wall-normal points for the compressible boundary layer (in plus units)
+		
+		T_Tw, array
+		Boundary layer temperature profile, normalized by the wall temperature Tw
+		
+		mu_muw, array
+		Boundary layer viscosity profile, normalized by the wall viscosity muw
+		
+		alf_plus, float
+		Target resolution in wall Kolmogorov units
+		
+		jb, integer
+		Transition node from viscous to outer stretching
+		
+		ysp, float
+		Target first point wall distance in inner units
+		
+		kappa, float
+		Von Karman constant
+		(REMARK: 
+		FOR CONSISTENCY IT MUST BE THE OUTPUT OF THE 
+		FUNCTION GENERATING THE BOUNDARY LAYER PROFILES)
+
+		**kwargs: Optional inputs:
+		
+				myNy, integer
+				Number of points to use to build the wall normal grid stretching.
+				By default the method with run with a number of points based on
+				an asyptotic estimation for the given Reynolds number
+
+
+Returns:
+
+		yStar_j, array
+		semilocal scaled wall distance function of the number of points in the wall normal direction
+		
+		yPlus_j, array
+		wall scaled  wall distance function of the number of points in the wall normal direction
+		
+		jj, array 
+		index array of points in the wall normal direction
+		
+		Ny, integer
+		number of points in the wall normal direction
+		
+		alf_opt, float
+		optimal alf star to respect threshold resolution in wall Kolmogorov units
+		
+		etaPlus_j, array
+		estimated etaPlus profile, useful to chek resolution requirements
+
+
+
+===================================================
 METHOD DESCRIPTION
 ===================================================
 
@@ -197,8 +370,9 @@ A detailed description of the method can be found in the papers referenced above
 In brief, the properties for the compressible boundary layer are computed by relating it
 with an equivalent incompressible state.
 
-An incompressible boundary layer velocity profile is defined using a known model followed by
-transforming it to the desired compressible state (defined using the function input parameters).
+In the indirect method, an incompressible boundary layer velocity profile is defined using a 
+known model followed by transforming it to the desired compressible state 
+(defined using the function input parameters).
 
 These transformation functions assume that the only effect of non-zero Mach numbers comes from
 the boundary layer density profile as well as viscosity profile for some functions. 
@@ -208,6 +382,9 @@ boundary layer temperature which in turn is related to the boundary layer veloci
 temperature-velocity modeling relation. 
 
 The method follows an iterative process which, on convergence, returns the outputs described above.
+
+In the direct method, the compressible boundary layer velocity profile is directly computed
+in the desired compressible state (defined using the function input parameters) using a known model
 
 For the generation of the natural wall-normal grid stretching, first a universal scaling for the
 Kolmodorov length-scale in semilocal units is assumed, i.e. eta^* = ( k y^* )^1/4; then the y^* profile
@@ -219,10 +396,12 @@ one ( y^+ ).
 MODELING CHOICES
 ===================================================
 
-The current work models the incompressible velocity profile using the definition presented in 
+In the indirect method, the current work models the incompressible velocity profile using the definition presented in 
 Huang et al. [AIAA Journal, Vol. 31, No. 9, 1993, pp. 1600– 1604].
 It can be changed by editing the function universalVelocityProfile in boundaryLayerPropFunctions.py
 
+In the direct method, the target compressible velocity profile are directly computed by integrating an ODE as
+described in Hasan et al. [PRF, (https://doi.org/10.2514/1.J063335)] work.
 
 Further, the following modeling choices are incorporated in the current implementation:\
 1. Viscosity-Temperature relation - Chosen by specifying value to flagViscTemp\
@@ -249,7 +428,7 @@ flagTempVelocity = 2 : Walz's relation
 
 
 
-4. Velocity transform function - Chosen by specifying value to flagVelocityTransform\
+4. Velocity transform function (indirect method) - Chosen by specifying value to flagVelocityTransform\
 [For implementation details, see function inverseVelocityTransform in boundaryLayerPropFunctions.py]\
 flagVelocityTransform = 1 : Inverse of the Van Driest velocity transform\
 flagVelocityTransform = 2 : Inverse of the Trettel-Larsson velocity transform\
@@ -257,8 +436,15 @@ flagVelocityTransform = 3 : Inverse of the Volpiani velocity transform function 
 
 
 
+4. Velocity transform function (direct method), used as a compressible eddy viscosity model - Chosen by specifying value to flagVelocityTransform\
+[For implementation details, see function inverseVelocityTransform in boundaryLayerPropFunctions_direct.py]\
+flagVelocityTransform = 1 : The Van Driest velocity transform\
+flagVelocityTransform = 2 : The Trettel-Larsson velocity transform\
+flagVelocityTransform = 3 : The HLPP velocity transform function [DEFAULT]
 
-5. Wall normal grid stretching\
+
+
+6. Wall normal grid stretching\
 The semilocal y^* profile is created according to the proposed stretching of Pirozzoli & Orlandi 
 [J. Comput. Phys. Volume 439,2021, 110408, https://doi.org/10.1016/j.jcp.2021.110408 ], the final
 y^+ grid is then obtained using the tranformation from semilocal to wall-scaled units.
@@ -282,7 +468,7 @@ wallResolutionThreshold in the function boundaryLayerProperties.
 
 
 
-2. The implementation has been found to be stable with the use of the Van Driest and Volpiani 
+2. The indirect method implementation has been found to be stable with the use of the Van Driest and Volpiani 
 velocity transform functions. Hence, these cases are run without any under-relaxation 
 (underRelaxFactor = 1). However, using the Trettel-Larsson transform typically needs moderate
 to strong under-relaxation. Therefore, by default, underRelaxFactor = 0.5 for this case to
@@ -302,5 +488,5 @@ The script will output the message:\
 ===================================================
 ADDITIONAL DOCUMENTATION
 ===================================================
-A detailed description of each function implemented in  can be found in the file 
-boundaryLayerPropFunctions.py
+A detailed description of each function implemented in  can be found in the files 
+boundaryLayerPropFunctions.py and boundaryLayerPropFunctions_direct.py
