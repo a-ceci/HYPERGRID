@@ -1015,9 +1015,9 @@ def boundaryLayerProperties(M,ReDelta2,Tw_Te,Te,N,**kwargs):
     #ratio of wall to recovery temperature, to be used for subsequent computation
     Tw_Tr = Tw_Te/Tr_Te
 
-    print('Wall to free-stream temperature ration Tw_Te = '    +str(Tw_Te))
-    print('Wall to recovery temperature ration Tw_Tr = '       +str(Tw_Tr))
-    print('Recovery to free-stream temperature ration Tr_Te = '+str(Tr_Te))
+    print('Wall to free-stream temperature ratio Tw_Te = '    +str(Tw_Te))
+    print('Wall to recovery temperature ratio Tw_Tr = '       +str(Tw_Tr))
+    print('Recovery to free-stream temperature ratio Tr_Te = '+str(Tr_Te))
 
     #compute dynamic viscosity ratio mue/muw
     mue_muw = viscosityFromTemperature(np.array([1/Tw_Te]),Tw,flagViscTemp)
