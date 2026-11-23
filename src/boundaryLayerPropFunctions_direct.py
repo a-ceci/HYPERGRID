@@ -724,7 +724,7 @@ def thetaDelta(eta,rho_rhoe,U_Ue):
         functionValue[i] = rho_rhoe[i] * U_Ue[i] * (1 - U_Ue[i])
     
     #integrate using Trapezoidal rule
-    thetaDeltaVal = integrate.trapz(functionValue, eta)
+    thetaDeltaVal = integrate.trapezoid(functionValue, eta)
     
     return thetaDeltaVal
 
@@ -1020,7 +1020,8 @@ def boundaryLayerProperties(M,ReDelta2,Tw_Te,Te,N,**kwargs):
     print('Recovery to free-stream temperature ratio Tr_Te = '+str(Tr_Te))
 
     #compute dynamic viscosity ratio mue/muw
-    mue_muw = viscosityFromTemperature(np.array([1/Tw_Te]),Tw,flagViscTemp)
+    #viscosityFromTemperature normalizes by its first entry, so the wall (T/Tw = 1) must come first
+    mue_muw = viscosityFromTemperature(np.array([1, 1/Tw_Te]),Tw,flagViscTemp)[1]
 
     #compute the freestream to wall density ratio
     rhoe_rhow = densityFromTemperature(1/Tw_Te)

@@ -546,7 +546,7 @@ def thetaDelta(eta, rho_rhoe, U_Ue):
         functionValue[i] = rho_rhoe[i] * U_Ue[i] * (1 - U_Ue[i])
     
     #integrate using Trapezoidal rule
-    thetaDeltaVal = integrate.trapz(functionValue, eta)
+    thetaDeltaVal = integrate.trapezoid(functionValue, eta)
     
     return thetaDeltaVal
 
